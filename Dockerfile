@@ -16,6 +16,13 @@ RUN apt-get update && \
 RUN pecl install sqlsrv && \
     pecl install pdo_sqlsrv
 
+RUN curl https://xdebug.org/files/xdebug-3.1.3.tgz | tar xzvf - && \
+    cd xdebug-3.1.3 && \
+    phpize && \
+    ./configure && \
+    make && \
+    cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20210902
+
 # optional: for bcp and sqlcmd
 #sudo ACCEPT_EULA=Y apt-get install -y mssql-tools
 #echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
